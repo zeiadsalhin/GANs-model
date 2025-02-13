@@ -80,7 +80,7 @@ export default function ClientComponent() {
       {returnedImage &&
       <div className="result p-5">
       <h2 className='text-2xl p-3'>Result</h2>
-       <img src={returnedImage} alt="Returned" width={400} />
+       <img src={returnedImage} className='mx-auto m-5' alt="Returned" width={400} />
       </div>}
 
       <div className="reset p-5">
