@@ -51,6 +51,25 @@ export default function ClientComponent() {
         event.target.value = null; // allow the same image to upload
     };
 
+    // handle drag and drop area 
+    const handleDrop = (e) => {
+        e.preventDefault();
+        const file = e.dataTransfer.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreview(reader.result);
+                setImage(file); // set image
+            }
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+    };
+
+    // handle result error
     if (error) {
         return <div>Error: {error.message}</div>;
     }
@@ -62,12 +81,28 @@ export default function ClientComponent() {
     <div className='flex flex-col p-5'>
 
         <div className="input mx-auto flex flex-col justify-center p-5">
-       
-        <label htmlFor="file-upload" className="custom-file-upload">
-            <FontAwesomeIcon icon={faCloudUploadAlt} size='2xl' /> Upload Image
+
+        {/*drag or upload image*/}
+        <div
+            className="upload-area"
+            onClick={()=>{document.getElementById('file-upload').click()}}
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            style={{
+            border: '2px dashed #ccc',
+            borderRadius: '1rem',
+            padding: '6rem',
+            textAlign: 'center',
+            cursor: 'pointer'
+            }}
+        >
+        <label className="custom-file-upload cursor-pointer">
+            <FontAwesomeIcon icon={faCloudUploadAlt} size='2xl' /> {preview ? 'Change' : 'Upload'} Image
         </label>
         <input id="file-upload" type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
-        
+        </div>
+
+           
         {preview && 
         <div className="">
         <img src={preview}  className='mx-auto m-5' alt="Preview" width={400} />
@@ -78,14 +113,17 @@ export default function ClientComponent() {
         </div>
 
       {returnedImage &&
+      <>
       <div className="result p-5">
       <h2 className='text-2xl p-3'>Result</h2>
        <img src={returnedImage} className='mx-auto m-5' alt="Returned" width={400} />
-      </div>}
+      </div>
 
       <div className="reset p-5">
       <button onClick={()=>{setImage(null); setPreview(null); setReturnedImage(null);}}>Reset</button>
       </div>
+      </>
+    }
 
     </div>
         </div>
