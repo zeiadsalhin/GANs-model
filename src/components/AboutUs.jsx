@@ -35,7 +35,7 @@ const members = [
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen py-8 px-4">
+    <div className="min-h-screen py-8">
       <div className="max-w-screen-lg mx-auto  rounded-lg shadow-lg p-8">
         <h1 className="text-3xl font-bold text-center text-[#646cff] mb-6">About Us</h1>
 
@@ -62,10 +62,17 @@ const AboutUs = () => {
           ))}
         </div>
         
-        <div className="mt-16 text-center">
+        <div className="mt-16 mb-5 text-center">
           <p className="text-lg opacity-90">
             We are excited about this journey and thankful for the opportunity to create this project. Thank you for visiting our Project!
           </p>
+        </div>
+
+        {/*Break line*/}
+        <div className="w-[4rem] h-1 mx-auto bg-gray-500 rounded my-5"></div>
+
+        <div className="version text-center">
+          <p className="p-5 opacity-70">v 1.0</p>
         </div>
       </div>
     </div>

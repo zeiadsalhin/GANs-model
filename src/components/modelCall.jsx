@@ -1,7 +1,7 @@
 import { useState } from 'react'; // import app libraries
 import { Client } from "@gradio/client"; // import the model connector
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // import icons
-import { faCloudUploadAlt, faSpinner, faDownload } from '@fortawesome/free-solid-svg-icons'; // import icons
+import { faCloudUploadAlt, faSpinner, faEye } from '@fortawesome/free-solid-svg-icons'; // import icons
 
 export default function ClientComponent() {
     // define app states
@@ -126,9 +126,9 @@ export default function ClientComponent() {
 
       {/* Save Image Button */}
       <div className="save p-5">
-                        <a href={returnedImage} download="super_res_image.jpg">
+                        <a href={returnedImage} target='_blank' download={returnedImage}>
                             <button>
-                                <FontAwesomeIcon icon={faDownload} size='lg' /> Save Image
+                                <FontAwesomeIcon icon={faEye} size='lg' /> View Image
                             </button>
                         </a>
                     </div>
