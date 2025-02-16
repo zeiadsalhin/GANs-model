@@ -40,7 +40,7 @@ export default function ClientComponent() {
     };
 
     // handle image upload
-    const handleFileChange = (event) => {
+    const handleFileChangeServer = (event) => {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
@@ -54,7 +54,7 @@ export default function ClientComponent() {
     };
 
     // handle drag and drop area 
-    const handleDrop = (e) => {
+    const handleDropServer = (e) => {
         e.preventDefault();
         const file = e.dataTransfer.files[0];
         if (file) {
@@ -67,7 +67,7 @@ export default function ClientComponent() {
         }
     };
 
-    const handleDragOver = (e) => {
+    const handleDragOverServer = (e) => {
         e.preventDefault();
     };
 
@@ -93,8 +93,8 @@ export default function ClientComponent() {
         <div
             className="upload-area"
             onClick={()=>{document.getElementById('file-upload').click()}}
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
+            onDrop={handleDropServer}
+            onDragOver={handleDragOverServer}
             style={{
             border: '2px dashed #ccc',
             borderRadius: '1rem',
@@ -106,7 +106,7 @@ export default function ClientComponent() {
         <label className="custom-file-upload cursor-pointer">
             <FontAwesomeIcon icon={faCloudUploadAlt} size='2xl' /> {preview ? 'Change' : 'Upload'} Image
         </label>
-        <input id="file-upload" type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
+        <input id="file-upload" type="file" accept="image/*" onChange={handleFileChangeServer} style={{ display: 'none' }} />
         </div>
 
            
