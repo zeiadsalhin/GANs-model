@@ -13,7 +13,7 @@ export default function ClientComponent() {
     const [loader, setLoader] = useState(false)
 
     // establish connection and send the image to SR model
-    const fetchData = async () => { 
+    const fetchDataServer = async () => { 
         if(image) {
         setLoader(true);
         async function fetchData() {
@@ -35,7 +35,7 @@ export default function ClientComponent() {
         });
         }
 
-        fetchData(); // call the function
+        fetchDataServer(); // call the function
     }
     };
 
