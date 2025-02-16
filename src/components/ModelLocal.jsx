@@ -52,7 +52,7 @@ const handleDragOver = (e) => {
 
     try {
       // Send the image file to the FastAPI server
-      const response = await axios.post("http://127.0.0.1:8002/generate/", formData, {
+      const response = await axios.post("https://bonefish-accepted-separately.ngrok-free.app/generate/", formData, {
         headers: {
           "Content-Type": "multipart/form-data", // This header is important for file uploads
         },
