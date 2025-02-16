@@ -2,6 +2,7 @@ import { useState } from 'react'; // import app libraries
 import { Client } from "@gradio/client"; // import the model connector
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // import icons
 import { faCloudUploadAlt, faSpinner, faEye } from '@fortawesome/free-solid-svg-icons'; // import icons
+import ModelLocal from './ModelLocal';
 
 export default function ClientComponent() {
     // define app states
@@ -77,8 +78,10 @@ export default function ClientComponent() {
 
     // display application interface
     return (
+        <>
+    <ModelLocal />
     <div className='main flex flex-col mx-auto justify-center text-center w-screen mt-10 mb-20'>
-            <h1 className='text-3xl font-bold'>GANs Super Resolution</h1>
+            <h1 className='text-3xl font-bold'>GANs Super Resolution (Server)</h1>
             <p className='p-3 opacity-70 text-sm'>Upload your low resolution image to get high quality.</p>
 
     <div className='flex flex-col p-5'>
@@ -141,5 +144,6 @@ export default function ClientComponent() {
 
     </div>
     </div>
+    </>
     );
 }
