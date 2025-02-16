@@ -13,10 +13,10 @@ export default function ClientComponent() {
     const [loader, setLoader] = useState(false)
 
     // establish connection and send the image to SR model
-    const fetchDataServer = async () => { 
+    const fetchData = async () => { 
         if(image) {
         setLoader(true);
-        async function fetchData() {
+        async function fetchDataServer() {
             Client.connect("https://alfa11-gans.hf.space") //  connect to the image model
         .then(client => {
             return client.predict("/predict", 

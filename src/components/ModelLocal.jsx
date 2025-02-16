@@ -46,7 +46,7 @@ const handleDragOver = (e) => {
     if (!imageServer) {
       return;
     }
-    setLoader(true);
+    setLoaderServer(true);
     const formData = new FormData(); // Create FormData for the file upload
     formData.append("file", imageServer); // Append the file to FormData
 
@@ -79,7 +79,7 @@ const handleDragOver = (e) => {
     
         <div className='flex flex-col p-5'>
     
-            {!returnedImage && 
+            {!returnedImageServer && 
             <div className="input mx-auto flex flex-col justify-center p-5">
     
             {/*drag or upload image*/}
@@ -103,17 +103,17 @@ const handleDragOver = (e) => {
             </div>
     
                
-            {preview && 
+            {previewServer && 
             <div className="">
             <img src={previewServer}  className='mx-auto m-5' alt="Preview" width={200} />
             <button onClick={()=>{previewServer? fetchData() : undefined}}>
-            {loader ? <FontAwesomeIcon icon={faSpinner} size='xl' spin /> : 'Upload to Model'}
+            {loaderServer ? <FontAwesomeIcon icon={faSpinner} size='xl' spin /> : 'Upload to Model'}
             </button>
             </div>}
             </div>
             }
     
-          {returnedImage &&
+          {returnedImageServer &&
           <>
           <div className="result p-5">
           <h2 className='text-2xl p-3 font-bold'>Result</h2>
