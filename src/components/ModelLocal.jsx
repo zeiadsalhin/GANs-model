@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // import icon
 import { faCloudUploadAlt, faSpinner, faDownload } from '@fortawesome/free-solid-svg-icons'; // import icons
 
 const ModelCall = () => {
-  const [image, setImage] = useState(null); // Holds the uploaded image
-  const [preview, setPreview] = useState(""); // Holds the image preview URL
-  const [returnedImage, setReturnedImage] = useState(""); // Holds the returned generated image
-  const [loader, setLoader] = useState(false)
+  const [imageServer, setImageServer] = useState(null); // Holds the uploaded image
+  const [previewServer, setPreviewServer] = useState(""); // Holds the image preview URL
+  const [returnedImageServer, setReturnedImageServer] = useState(""); // Holds the returned generated image
+  const [loaderServer, setLoaderServer] = useState(false)
 
   // Handle file input change (when user selects a file)
   const handleFileChange = (event) => {
@@ -15,8 +15,8 @@ const ModelCall = () => {
     if (file) {
       const reader = new FileReader(); // Use FileReader to preview the image
       reader.onloadend = () => {
-        setPreview(reader.result); // Set the image preview
-        setImage(file); // Set the image for upload
+        setPreviewServer(reader.result); // Set the image preview
+        setImageServer(file); // Set the image for upload
       };
       reader.readAsDataURL(file); // Read file as data URL for preview
     }
@@ -30,8 +30,8 @@ const handleDrop = (e) => {
     if (file) {
         const reader = new FileReader();
         reader.onloadend = () => {
-            setPreview(reader.result);
-            setImage(file); // set image
+            setPreviewServer(reader.result);
+            setImageServer(file); // set image
         }
         reader.readAsDataURL(file);
     }
@@ -43,12 +43,12 @@ const handleDragOver = (e) => {
 
   // Function to send the image to FastAPI server and receive the generated image
   const fetchData = async () => {
-    if (!image) {
+    if (!imageServer) {
       return;
     }
     setLoader(true);
     const formData = new FormData(); // Create FormData for the file upload
-    formData.append("file", image); // Append the file to FormData
+    formData.append("file", imageServer); // Append the file to FormData
 
     try {
       // Send the image file to the FastAPI server
@@ -64,11 +64,11 @@ const handleDragOver = (e) => {
       const imageUrl = URL.createObjectURL(blob); // Create a URL for the image
 
       // Set the generated image URL to display the image
-      setReturnedImage(imageUrl);
-      setLoader(false);
+      setReturnedImageServer(imageUrl);
+      setLoaderServer(false);
     } catch (error) {
       console.error("Error uploading image:", error);
-      setLoader(false);
+      setLoaderServer(false);
     }
   };
 
@@ -85,7 +85,7 @@ const handleDragOver = (e) => {
             {/*drag or upload image*/}
             <div
                 className="upload-area"
-                onClick={()=>{document.getElementById('file-upload').click()}}
+                onClick={()=>{document.getElementById('file-uploadServer').click()}}
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
                 style={{
@@ -97,16 +97,16 @@ const handleDragOver = (e) => {
                 }}
             >
             <label className="custom-file-upload cursor-pointer">
-                <FontAwesomeIcon icon={faCloudUploadAlt} size='2xl' /> {preview ? 'Change' : 'Upload'} Image
+                <FontAwesomeIcon icon={faCloudUploadAlt} size='2xl' /> {previewServer ? 'Change' : 'Upload'} Image
             </label>
-            <input id="file-upload" type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
+            <input id="file-uploadServer" type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
             </div>
     
                
             {preview && 
             <div className="">
-            <img src={preview}  className='mx-auto m-5' alt="Preview" width={200} />
-            <button onClick={()=>{preview? fetchData() : undefined}}>
+            <img src={previewServer}  className='mx-auto m-5' alt="Preview" width={200} />
+            <button onClick={()=>{previewServer? fetchData() : undefined}}>
             {loader ? <FontAwesomeIcon icon={faSpinner} size='xl' spin /> : 'Upload to Model'}
             </button>
             </div>}
@@ -117,12 +117,12 @@ const handleDragOver = (e) => {
           <>
           <div className="result p-5">
           <h2 className='text-2xl p-3 font-bold'>Result</h2>
-           <img src={returnedImage} className='mx-auto m-5' alt="Returned" width={400} />
+           <img src={returnedImageServer} className='mx-auto m-5' alt="Returned" width={400} />
           </div>
     
           {/* Save Image Button */}
           <div className="save p-5">
-                            <a href={returnedImage} target='_blank' download={returnedImage}>
+                            <a href={returnedImageServer} target='_blank' download={returnedImageServer}>
                                 <button>
                                     <FontAwesomeIcon icon={faDownload} size='lg' /> Download Image
                                 </button>
@@ -130,7 +130,7 @@ const handleDragOver = (e) => {
                         </div>
     
           <div className="reset p-5">
-          <button onClick={()=>{setImage(null); setPreview(null); setReturnedImage(null);}}>Reset</button>
+          <button onClick={()=>{setImageServer(null); setPreviewServer(null); setReturnedImageServer(null);}}>Reset</button>
           </div>
           </>
         }
