@@ -14,14 +14,9 @@ function Header() {
     setMobileMenuOpen(false); // Close the drawer dynamically when location changes
   }, [location]);
 
-  // open menu function
+  // handle menu function
   const toggleMobileMenu = () => {
-    setMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  // Handle swipe to close
-  const handleDrawerClose = () => {
-    setMobileMenuOpen(false);
+    setMobileMenuOpen(prevState => !prevState); // Toggle the drawer state
   };
 
   return (
@@ -46,9 +41,10 @@ function Header() {
           <SwipeableDrawer
             anchor="left"
             open={isMobileMenuOpen}
-            onClose={handleDrawerClose}  // Close when swiped or clicking outside
-            onOpen={() => {}}  // You can define actions when opening if needed
-            swipeAreaWidth={400} // Ensures swipeable area for the drawer
+            onClose={toggleMobileMenu}  // Close when swiped or clicking outside
+            onOpen={toggleMobileMenu}   // Open when swiped to right
+            swipeAreaWidth={30} // Set swipeable area for the drawer
+            disableSwipeToOpen={false}  // Allow swipe to open on all devices
             sx={{
               '& .MuiDrawer-paper': {
                 backgroundColor: '#171717',
@@ -60,7 +56,7 @@ function Header() {
             {/* Close Menu Icon */}
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <img src="/logo.webp" className='invert w-[3rem] min-h-[3rem]' width='100%' height='100%' alt="logo" />
-              <Button onClick={handleDrawerClose} sx={{ color: 'white' }}>
+              <Button onClick={toggleMobileMenu} sx={{ color: 'white' }}>
                 <CloseIcon />
               </Button>
             </Box>
