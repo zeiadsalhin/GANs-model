@@ -44,40 +44,52 @@ const handleDragOver = (e) => {
 };
 
 
+// Function to send the image to FastAPI server and receive the generated image
+const fetchData = async () => {
+  if (!imageServer) {
+    return;
+  }
+  setLoaderServer(true);
+  setError(null);
+  const formData = new FormData(); // Create FormData for the file upload
+  formData.append("file", imageServer); // Append the file to FormData
 
-  // Function to send the image to FastAPI server and receive the generated image
-  const fetchData = async () => {
-    if (!imageServer) {
-      return;
-    }
-    setLoaderServer(true);
-    setError(null)
-    const formData = new FormData(); // Create FormData for the file upload
-    formData.append("file", imageServer); // Append the file to FormData
+  try {
+    // Send the image file to the FastAPI server
+    const response = await axios.post("https://bonefish-accepted-separately.ngrok-free.app/generate/", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data", // This header is important for file uploads
+      },
+      responseType: "arraybuffer", // Expect binary data (image)
+    });
 
-    try {
-      // Send the image file to the FastAPI server
-      const response = await axios.post("https://bonefish-accepted-separately.ngrok-free.app/generate/", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data", // This header is important for file uploads
-        },
-        responseType: "arraybuffer", // Expect binary data (image)
-      });
+    // Create a Blob from the response data (the image)
+    const blob = new Blob([response.data], { type: "image/png" }); // Converting the image array buffers to png format
 
-      // Create a Blob from the response data (the image)
-      const blob = new Blob([response.data], { type: "image/png" }); // Converting the image array buffers to png format
-      const imageUrl = URL.createObjectURL(blob); // Create a URL for the image
+    // Now upload the image to imgBB
+    const imgBBAPIKey = "dc02c6e93442dadcbb2a9cbdf68820db";
+    const imgBBFormData = new FormData();
+    imgBBFormData.append("image", blob);
 
+    // Send the image to imgBB
+    const uploadResponse = await axios.post(`https://api.imgbb.com/1/upload?key=${imgBBAPIKey}`, imgBBFormData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    });
 
-      // Set the generated image URL to display the image
-      setReturnedImageServer(imageUrl);
-      setLoaderServer(false);
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      setLoaderServer(false);
-      setError(error)
-    }
-  };
+    // Get the URL from imgBB's response
+    const imageUrl = uploadResponse.data.data.url; // This is the direct URL to the Generated image
+    
+    // Set the generated image URL to display the image
+    setReturnedImageServer(imageUrl);
+    setLoaderServer(false);
+  } catch (error) {
+    console.error("Error uploading image:", error);
+    setLoaderServer(false);
+    setError(error);
+  }
+};
 
   return (
     <div className='main flex flex-col mx-auto justify-center text-center w-screen mt-10 mb-20'>
@@ -129,15 +141,11 @@ const handleDragOver = (e) => {
     
           {/* Save Image Button */}
           <div className="save p-5">
-               <button 
-               onClick={() => {
-               const link = document.createElement('a');
-               link.href = returnedImageServer;
-               link.download = "generated_image.png"; // Download the image
-               link.click();
-               }}>
+          <a href={returnedImageServer} target='_blank' download={returnedImageServer}>
+               <button>
                   <FontAwesomeIcon icon={faDownload} size='lg' /> Download Image
                 </button>
+            </a>
           </div>
     
           <div className="reset p-5">
