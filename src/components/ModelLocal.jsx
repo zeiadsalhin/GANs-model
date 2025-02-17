@@ -65,7 +65,7 @@ const handleDragOver = (e) => {
       });
 
       // Create a Blob from the response data (the image)
-      const blob = new Blob([response.data], { type: "image/png" });  
+      const blob = new Blob([response.data], { type: "image/png" }); // Converting the image array buffers to png format
       const imageUrl = URL.createObjectURL(blob); // Create a URL for the image
 
 
