@@ -20,7 +20,7 @@ const ModelCall = () => {
         setPreviewServer(reader.result); // Set the image preview
         setImageServer(file); // Set the image for upload
       };
-      reader.readAsDataURL(file); // Read file as data URL for preview
+      reader.readAsDataURL(file); // Read image as data URL for preview
     }
     event.target.value = null; // Reset the file input field to allow re-uploading the same file
   };
@@ -35,23 +35,24 @@ const handleDrop = (e) => {
             setPreviewServer(reader.result);
             setImageServer(file); // set image
         }
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(file); // Read image as data URL for preview
     }
 };
 
 const handleDragOver = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent double function trigger
 };
 
 
 // Function to send the image to FastAPI server and receive the generated image
 const fetchData = async () => {
-  if (!imageServer) {
+  if (!imageServer) { // must have image to send to model
     return;
   }
+
   setLoaderServer(true);
   setError(null);
-  const formData = new FormData(); // Create FormData for the file upload
+  const formData = new FormData(); // Create FormData for the file upload 
   formData.append("file", imageServer); // Append the file to FormData
 
   try {
@@ -66,12 +67,12 @@ const fetchData = async () => {
     // Create a Blob from the response data (the image)
     const blob = new Blob([response.data], { type: "image/png" });
 
-    // Now upload the image to imgBB
+    // Upload the generated image to imgBB cdn for public access
     const imgBBAPIKey = "dc02c6e93442dadcbb2a9cbdf68820db";
     const imgBBFormData = new FormData();
     imgBBFormData.append("image", blob);
 
-    // Send the image to imgBB
+    // Send the image to imgBB 
     const uploadResponse = await axios.post(`https://api.imgbb.com/1/upload?key=${imgBBAPIKey}`, imgBBFormData, {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -138,10 +139,12 @@ const fetchData = async () => {
           <h2 className='text-2xl p-3 font-bold'>Result</h2>
            <img src={returnedImageServer} className='mx-auto m-5' alt="Returned" width={400} />
           </div>
+
+          <p className="text-sm opacity-70">*All Images are Saved in generated_GANs folder</p>
     
           {/* Save Image Button */}
           <div className="save p-5">
-          <a href={returnedImageServer} target='_blank' download={returnedImageServer}>
+          <a href={returnedImageServer} download={returnedImageServer}>
                <button>
                   <FontAwesomeIcon icon={faDownload} size='lg' /> View Image
                 </button>

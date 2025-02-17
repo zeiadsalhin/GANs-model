@@ -1,0 +1,9 @@
+1- pip install fastapi uvicorn
+2- pip install fastapi[all]
+3- Save server.py in Documents folder.
+4- In Jupyter new terminal: uvicorn server:app --host 127.0.0.1 --port 8002 --reload
+5- in vscode teminal: npm install -g ngrok
+6- in vscode terminal: ngrok config add-authtoken 2t8vRhcLwDHm10rNZ7cycEnpPds_5FktFa3g7sa737pM6K8BT
+7- in vscode terminal: ngrok http --url=bonefish-accepted-separately.ngrok-free.app 8002
+8- Create folder name: generated_GANs in Documents
+9- Open Mobile App or website https://gans-model.netlify.app and Upload Image
