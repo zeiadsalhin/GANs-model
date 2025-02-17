@@ -1,6 +1,6 @@
 import AboutUs from './components/AboutUs';
 import Header from './components/Header';
-import ClientComponent from './components/modelCall';
+import Model from './components/ModelLocal';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 // Project Members
@@ -24,7 +24,7 @@ function App() {
 
         {/* Define Navigation links */}
         <Routes>
-        <Route path='/' element={<ClientComponent />} />          
+        <Route path='/' element={<Model />} />          
         <Route path='/AboutUs' element={<AboutUs />} />
         </Routes>
 
