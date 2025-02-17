@@ -64,17 +64,25 @@ const fetchData = async () => {
     });
 
     // Create a Blob from the response data (the image)
-    const blob = new Blob([response.data], { type: "image/png" }); // Converting the image array buffers to png format
+    const blob = new Blob([response.data], { type: "image/png" });
 
-    // Create an object URL for the image Blob (to display it in the img tag)
-    const imageUrl = URL.createObjectURL(blob); // This will create a temporary URL for the image
+    // Now upload the image to imgBB
+    const imgBBAPIKey = "dc02c6e93442dadcbb2a9cbdf68820db";
+    const imgBBFormData = new FormData();
+    imgBBFormData.append("image", blob);
 
-    // Update the state with the generated image URL for rendering
-    setReturnedImageServer(imageUrl); // Display the image in the UI
+    // Send the image to imgBB
+    const uploadResponse = await axios.post(`https://api.imgbb.com/1/upload?key=${imgBBAPIKey}`, imgBBFormData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    });
 
-    // Optionally, trigger the download with a specified file name
-    downloadBlobAsPNG(blob, "image.png");
-
+    // Get the URL from imgBB's response
+    const imageUrl = uploadResponse.data.data.url; // This is the direct URL to the Generated image
+    
+    // Set the generated image URL to display the image
+    setReturnedImageServer(imageUrl);
     setLoaderServer(false);
   } catch (error) {
     console.error("Error uploading image:", error);
@@ -82,23 +90,6 @@ const fetchData = async () => {
     setError(error);
   }
 };
-
-const downloadBlobAsPNG = (blob, fileName = "image.png") => {
-  const reader = new FileReader();
-  reader.onloadend = () => {
-    const imageUrl = reader.result; // This is the Data URL (base64 encoded)
-    
-    // Create an anchor element to trigger the download
-    const link = document.createElement("a");
-    link.href = imageUrl; // Use the Data URL for the download
-    link.download = fileName; // Set the file name for download (default to image.png)
-    link.click(); // Programmatically click the link to trigger the download
-  };
-  reader.readAsDataURL(blob); // Read the Blob as a Data URL
-};
-
-
-
 
   return (
     <div className='main flex flex-col mx-auto justify-center text-center w-screen mt-10 mb-20'>
@@ -152,7 +143,7 @@ const downloadBlobAsPNG = (blob, fileName = "image.png") => {
           <div className="save p-5">
           <a href={returnedImageServer} target='_blank' download={returnedImageServer}>
                <button>
-                  <FontAwesomeIcon icon={faDownload} size='lg' /> Download Image
+                  <FontAwesomeIcon icon={faDownload} size='lg' /> View Image
                 </button>
             </a>
           </div>
