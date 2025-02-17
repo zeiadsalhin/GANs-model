@@ -144,7 +144,7 @@ const fetchData = async () => {
     
           {/* Save Image Button */}
           <div className="save p-5">
-          <a href={returnedImageServer} download={returnedImageServer}>
+          <a href={returnedImageServer} target="_blank" download={returnedImageServer}>
                <button>
                   <FontAwesomeIcon icon={faDownload} size='lg' /> View Image
                 </button>
