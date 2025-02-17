@@ -8,6 +8,8 @@ const ModelCall = () => {
   const [previewServer, setPreviewServer] = useState(""); // Holds the image preview URL
   const [returnedImageServer, setReturnedImageServer] = useState(""); // Holds the returned generated image
   const [loaderServer, setLoaderServer] = useState(false)
+  const [error, setError] = useState(null)
+  
 
   // Handle file input change (when user selects a file)
   const handleFileChange = (event) => {
@@ -41,12 +43,15 @@ const handleDragOver = (e) => {
     e.preventDefault();
 };
 
+
+
   // Function to send the image to FastAPI server and receive the generated image
   const fetchData = async () => {
     if (!imageServer) {
       return;
     }
     setLoaderServer(true);
+    setError(null)
     const formData = new FormData(); // Create FormData for the file upload
     formData.append("file", imageServer); // Append the file to FormData
 
@@ -69,12 +74,13 @@ const handleDragOver = (e) => {
     } catch (error) {
       console.error("Error uploading image:", error);
       setLoaderServer(false);
+      setError(error)
     }
   };
 
   return (
     <div className='main flex flex-col mx-auto justify-center text-center w-screen mt-10 mb-20'>
-                <h1 className='text-3xl font-bold'>GANs Super Resolution (Local)</h1>
+                <h1 className='text-3xl font-bold'>GANs Super Resolution</h1>
                 <p className='p-3 opacity-70 text-sm'>Upload your low resolution image to get high quality.</p>
     
         <div className='flex flex-col p-5'>
@@ -112,7 +118,7 @@ const handleDragOver = (e) => {
             </div>}
             </div>
             }
-    
+
           {returnedImageServer &&
           <>
           <div className="result p-5">
@@ -122,19 +128,24 @@ const handleDragOver = (e) => {
     
           {/* Save Image Button */}
           <div className="save p-5">
-                            <a href={returnedImageServer} target='_blank' download={returnedImageServer}>
-                                <button>
-                                    <FontAwesomeIcon icon={faDownload} size='lg' /> Download Image
-                                </button>
-                            </a>
-                        </div>
+            <a href={returnedImageServer} target='_blank' download={returnedImageServer}>
+               <button>
+                  <FontAwesomeIcon icon={faDownload} size='lg' /> Download Image
+                </button>
+            </a>
+          </div>
     
           <div className="reset p-5">
-          <button onClick={()=>{setImageServer(null); setPreviewServer(null); setReturnedImageServer(null);}}>Reset</button>
+          <button onClick={()=>{setImageServer(null); setPreviewServer(null); setReturnedImageServer(null); setError(null)}}>Reset</button>
           </div>
           </>
         }
-    
+
+          {error && 
+          <div className="error">
+            <p className="text-red-800 text-sm font-semibold">{error.message} {error.code}</p>
+          </div>
+          }
         </div>
         </div>
   );
