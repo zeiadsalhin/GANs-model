@@ -72,7 +72,7 @@ const AboutUs = () => {
         <div className="w-[4rem] h-1 mx-auto bg-gray-500 rounded my-5"></div>
 
         <div className="version text-center">
-          <p className="p-5 opacity-70">v 1.0</p>
+          <p className="p-5 opacity-70">v 1.1</p>
         </div>
       </div>
     </div>

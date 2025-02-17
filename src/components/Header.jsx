@@ -43,7 +43,7 @@ function Header() {
             open={isMobileMenuOpen}
             onClose={toggleMobileMenu}  // Close when swiped or clicking outside
             onOpen={toggleMobileMenu}   // Open when swiped to right
-            swipeAreaWidth={50} // Set swipeable area for the drawer
+            swipeAreaWidth={55} // Set swipeable area for the drawer
             disableSwipeToOpen={false}  // Allow swipe to open on all devices
             sx={{
               '& .MuiDrawer-paper': {
