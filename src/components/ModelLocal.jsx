@@ -65,17 +65,10 @@ const handleDragOver = (e) => {
       });
 
       // Create a Blob from the response data (the image)
-      const blob = new Blob([response.data], { type: "image/png" });
+      const blob = new Blob([response.data], { type: "image/png" });  
       const imageUrl = URL.createObjectURL(blob); // Create a URL for the image
 
-      const link = document.createElement('a');
-               link.href = returnedImageServer;
-               link.download = "generated_image.png"; // Download the image
-               link.click();
 
-               
-      // console.log(imageUrl);
-      
       // Set the generated image URL to display the image
       setReturnedImageServer(imageUrl);
       setLoaderServer(false);
