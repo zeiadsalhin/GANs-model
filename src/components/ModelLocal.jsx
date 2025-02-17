@@ -128,11 +128,15 @@ const handleDragOver = (e) => {
     
           {/* Save Image Button */}
           <div className="save p-5">
-            <a href={returnedImageServer} target='_blank' download={returnedImageServer}>
-               <button>
+               <button 
+               onClick={() => {
+               const link = document.createElement('a');
+               link.href = returnedImageServer;
+               link.download = "generated_image.png"; // Download the image
+               link.click();
+               }}>
                   <FontAwesomeIcon icon={faDownload} size='lg' /> Download Image
                 </button>
-            </a>
           </div>
     
           <div className="reset p-5">
