@@ -111,9 +111,10 @@ const fetchData = async () => {
         <div className='flex flex-col p-5'>
     
             {!returnedImageServer && 
-            <div className="input mx-auto flex flex-col justify-center p-5">
+            <div className="input mx-auto flex flex-col justify-center p-5 min-h-[24rem]">
     
             {/*drag or upload image*/}
+            {!loaderServer && 
             <div
                 className="upload-area"
                 onClick={()=>{document.getElementById('file-uploadServer').click()}}
@@ -132,7 +133,7 @@ const fetchData = async () => {
             </label>
             <input id="file-uploadServer" type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
             </div>
-    
+            }
                
             {previewServer && 
             <div className="">
