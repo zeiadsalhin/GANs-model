@@ -43,7 +43,7 @@ function Header() {
             open={isMobileMenuOpen}
             onClose={toggleMobileMenu}  // Close when swiped or clicking outside
             onOpen={toggleMobileMenu}   // Open when swiped to right
-            swipeAreaWidth={55} // Set swipeable area for the drawer
+            swipeAreaWidth={52} // Set swipeable area for the drawer
             disableSwipeToOpen={false}  // Allow swipe to open on all devices
             sx={{
               '& .MuiDrawer-paper': {
@@ -55,7 +55,10 @@ function Header() {
           >
             {/* Close Menu Icon */}
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div className="logo flex">
               <img src="/logo.webp" className='invert w-[3rem] min-h-[3rem]' width='100%' height='100%' alt="logo" />
+              <h2 className='text-xl font-bold text-gray-300 p-2 my-auto'>SR</h2>
+              </div>
               <Button onClick={toggleMobileMenu} sx={{ color: 'white' }}>
                 <CloseIcon />
               </Button>
@@ -63,12 +66,26 @@ function Header() {
 
             {/* Menu content */}
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 4 }}>
-              <Link to="/">
-                <Button sx={{ color: 'white', marginBottom: 2 }}>Home</Button>
+              <Link to="/" className='w-full text-center'>
+                <Button sx={{ 
+                  color: 'white',
+                  fontSize: '1rem', 
+                  marginBottom: 2,
+                  opacity: location.pathname === '/' ? 0.7 : 1, // Opacity 70% for the active page
+                  }}>
+                    Home
+                    </Button>
               </Link>
 
-              <Link to="/AboutUs">
-                <Button sx={{ color: 'white', marginBottom: 2 }}>About</Button>
+              <Link to="/AboutUs" className='w-full text-center'>
+                <Button sx={{ 
+                  color: 'white',
+                  fontSize: '1rem', 
+                  marginBottom: 2,
+                  opacity: location.pathname === '/AboutUs' ? 0.7 : 1, // Opacity 70% for the active page
+                  }}>
+                    About
+                    </Button>
               </Link>
             </Box>
           </SwipeableDrawer>

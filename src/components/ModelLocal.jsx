@@ -93,7 +93,7 @@ const fetchData = async () => {
 };
 
   return (
-    <div className='main flex flex-col mx-auto justify-center text-center w-screen mt-10 mb-20'>
+    <div className='main flex flex-col mx-auto justify-center text-center w-screen mt-10 mb-10'>
                 <h1 className='text-3xl font-bold'>GANs Super Resolution</h1>
                 <p className='p-3 opacity-70 text-sm'>Upload your low resolution image to get high quality.</p>
     

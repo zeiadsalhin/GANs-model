@@ -39,7 +39,7 @@ const AboutUs = () => {
       <div className="max-w-screen-lg mx-auto  rounded-lg shadow-lg p-8">
         <h1 className="text-3xl font-bold text-center text-[#646cff] mb-6">About Us</h1>
 
-        <div className="text-lg mb-6">
+        <div className="text-lg text-center mb-6">
           <p>
             We are a dedicated team of students from <strong>Helwan University</strong> working on our graduation project. Our goal is to explore innovative solutions and develop new technologies that will have a positive impact on AI Community.
           </p>
@@ -48,7 +48,7 @@ const AboutUs = () => {
       {/*Break line*/}
         <div className="w-[4rem] h-1 mx-auto bg-gray-500 rounded my-5"></div>
 
-        <h2 className="text-2xl font-semibold text-[#646cff] mb-4">Our Team</h2>
+        <h2 className="text-2xl text-center font-semibold text-[#646cff] mb-4">Our Team</h2>
 
         <div className="grid grid-cols-1 gap-8">
           {members.map((member, index) => (
