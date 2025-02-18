@@ -2,17 +2,20 @@ import { useState } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // import icons
 import { faCloudUploadAlt, faSpinner, faDownload } from '@fortawesome/free-solid-svg-icons'; // import icons
+import { LinearProgress } from '@mui/material';
 
 const ModelCall = () => {
   const [imageServer, setImageServer] = useState(null); // Holds the uploaded image
   const [previewServer, setPreviewServer] = useState(""); // Holds the image preview URL
   const [returnedImageServer, setReturnedImageServer] = useState(""); // Holds the returned generated image
   const [loaderServer, setLoaderServer] = useState(false)
+  const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null)
   
 
   // Handle file input change (when user selects a file)
   const handleFileChange = (event) => {
+    setProgress(0) // make sure to start again 
     const file = event.target.files[0]; // Get the selected file
     if (file) {
       const reader = new FileReader(); // Use FileReader to preview the image
@@ -66,6 +69,8 @@ const fetchData = async () => {
 
     // Create a Blob from the response data (the image)
     const blob = new Blob([response.data], { type: "image/png" });
+    // progress 50%
+    setProgress(50)
 
     // Upload the generated image to imgBB cdn for public access
     const imgBBAPIKey = "dc02c6e93442dadcbb2a9cbdf68820db";
@@ -79,12 +84,18 @@ const fetchData = async () => {
       }
     });
 
+    // progress 100%
+    setProgress(100)
+    
     // Get the URL from imgBB's response
     const imageUrl = uploadResponse.data.data.url; // This is the direct URL to the Generated image
-    
+
+    setTimeout(() => { // for dynamic view the image after progress is completed
     // Set the generated image URL to display the image
     setReturnedImageServer(imageUrl);
     setLoaderServer(false);
+    }, 500);
+
   } catch (error) {
     console.error("Error uploading image:", error);
     setLoaderServer(false);
@@ -126,6 +137,23 @@ const fetchData = async () => {
             {previewServer && 
             <div className="">
             <img src={previewServer}  className='mx-auto m-5' alt="Preview" width={200} />
+
+            {loaderServer &&
+            <div className="progressbar m-4">
+            <LinearProgress 
+            variant="determinate" 
+            value={progress} 
+            sx={{
+            height: 12,
+            margin: 1,
+            borderRadius: 1,
+            backgroundColor: '#e0e0e0',
+            '& .MuiLinearProgress-bar': {
+            backgroundColor: '#9e9e9e', // color for progress bar
+            },}} />
+            <p className="font-bold">{`${progress}%`}</p>
+            </div>
+            }
             <button onClick={()=>{previewServer? fetchData() : undefined}}>
             {loaderServer ? <FontAwesomeIcon icon={faSpinner} size='xl' spin /> : 'Upload to Model'}
             </button>
@@ -137,7 +165,7 @@ const fetchData = async () => {
           <>
           <div className="result p-5">
           <h2 className='text-2xl p-3 font-bold'>Result</h2>
-           <img src={returnedImageServer} className='mx-auto m-5' alt="Returned" width={400} />
+           <img src={returnedImageServer} className='mx-auto m-5 min-h-[10rem]' alt="Returned" width={400} />
           </div>
 
           <p className="text-sm opacity-70">*All Images are Saved in generated_GANs folder</p>
