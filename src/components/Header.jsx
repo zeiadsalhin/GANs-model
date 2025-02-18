@@ -20,7 +20,7 @@ function Header() {
   };
 
   return (
-    <header>
+    <header className='fixed top-0 w-full z-50 bg-[#242424]'>
       <Box>
         <Box sx={{ maxWidth: 'xl', margin: '0 auto', paddingX: 1, paddingY: 2 }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: 50, borderBottom: '1px solid gray' }}>

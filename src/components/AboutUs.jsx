@@ -35,7 +35,7 @@ const members = [
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen py-8">
+    <div className="min-h-screen py-8 mt-20">
       <div className="max-w-screen-lg mx-auto  rounded-lg shadow-lg p-8">
         <h1 className="text-3xl font-bold text-center text-[#646cff] mb-6">About Us</h1>
 
