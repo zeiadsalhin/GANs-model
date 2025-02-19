@@ -26,7 +26,7 @@ function Header() {
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: 50, borderBottom: '1px solid gray' }}>
             {/* Mobile Menu Icon */}
             <Box sx={{ paddingBottom: '0.2rem' }}>
-              <Button onClick={toggleMobileMenu} disableRipple sx={{ color: 'white' }}>
+              <Button aria-label='menu' onClick={toggleMobileMenu} disableRipple sx={{ color: 'white' }}>
                 <MenuIcon sx={{ fontSize: '2.5rem' }} />
               </Button>
             </Box>

@@ -30,7 +30,7 @@ function App() {
 
         {/* Footer and Credits */}
         <div className="info mb-5 flex flex-col mx-auto text-center max-w-[28rem] justify-center p-1 opacity-70">
-          <p className='opacity-70 mb-1'>Created and Developed by:</p>
+          <p className='opacity-80 mb-1'>Created and Developed by:</p>
           <menu className='px-2 flex flex-wrap justify-center'>
             {members.map((member, i)=>(
               <li key={i} className='ml-1'>
