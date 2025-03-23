@@ -7,8 +7,7 @@ The GANs Super-Resolution Model is a cutting-edge AI tool that enhances the reso
 Check out the live demo: [Live Demo](https://gans-model.netlify.app)
 
 ## Features
-- **React**: A powerful JavaScript library for building user interfaces.
-- **Vite**: A fast and efficient build tool that provides instant server start and lightning-fast HMR (Hot Module Replacement).
+- **React / React-Native**: A powerful JavaScript library for building user interfaces & Mobile Applications.
 - **Material UI (MUI)**: A popular React UI framework that provides a set of customizable and accessible components.
 - **AI-Powered Super-Resolution**: Uses GANs to upscale low-resolution images while maintaining fine details and textures.
 - **User-Friendly Interface**: Simple and intuitive interface that makes it easy for anyone to upload images and get high-quality results.
@@ -45,6 +44,20 @@ Here’s how to use the GANs Super-Resolution Model on the website:
 The GANs Super-Resolution Model is licensed under the MIT License. See the LICENSE file for more information.
 
 ## Acknowledgements
-The GANs Super-Resolution Model is developed and maintained by Alfa.
+The GANs Super-Resolution Model is developed and maintained by Alfa Team.
+
+## 👥 Team Members
+
+| Name                | Role                 | Responsibilities                                                                                                                                                  |
+|---------------------|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Mohamed Mahmoud** | Team Leader          | Guides the project’s direction and ensures everything stays on track.                                                                                            |
+| **Zeiad Abdeltawab**| App & Model Creator  | Leads the development of the app and the AI model, ensures functionality, and optimizes model responses.                                                         |
+| **Islam BahiEldeen**| AI Tuner             | Specializes in fine-tuning AI models to enhance performance, accuracy, and efficiency.                                                                           |
+| **Omar Fahmy**  | AI Trainer           | Trains AI models with the right data for effective learning and accuracy optimization.                                                                           |
+| **Ahmed Mostafa**   | Team Member          | Contributes to various project aspects such as coding, problem-solving, and collaboration.                                                                      |
+| **Mohamed Khaled**  | AI Trainer           | Ensures continuous AI training for smarter and more capable model behavior throughout its lifecycle.                                                            |
+
+> _Together, we aim to build something impactful and innovative!_
+
 
 ### Thank you for using GANs Super-Resolution Model! We hope it helps you enhance your images and get high-quality results. If you have any questions or need assistance, feel free to reach out to us on GitHub.

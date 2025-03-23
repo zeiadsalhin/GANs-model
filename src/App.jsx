@@ -8,7 +8,7 @@ const members = [
   'Zeiad Abdeltawab',
   'Mohamed Mahmoud', 
   'Islam BahiEldin',
-  'Sayedi ElFahmy',
+  'Omar Fahmy',
   'Ahmed Mostafa',
   'Mohamed Khaled'
 ]
