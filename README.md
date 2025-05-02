@@ -54,8 +54,8 @@ The GANs Super-Resolution Model is developed and maintained by Alfa Team.
 | **Zeiad Abdeltawab**| App & Model Creator  | Leads the development of the app and the AI model, ensures functionality, and optimizes model responses.                                                         |
 | **Islam BahiEldeen**| AI Tuner             | Specializes in fine-tuning AI models to enhance performance, accuracy, and efficiency.                                                                           |
 | **Omar Fahmy**  | AI Trainer           | Trains AI models with the right data for effective learning and accuracy optimization.                                                                           |
-<!-- | **Ahmed Mostafa**   | Team Member          | Contributes to various project aspects such as coding, problem-solving, and collaboration.                                                                      | -->
 | **Mohamed Khaled**  | AI Trainer           | Ensures continuous AI training for smarter and more capable model behavior throughout its lifecycle.                                                            |
+<!-- | **Ahmed Mostafa**   | Team Member          | Contributes to various project aspects such as coding, problem-solving, and collaboration.  -->                                                                    
 
 > _Together, we aim to build something impactful and innovative!_
 
