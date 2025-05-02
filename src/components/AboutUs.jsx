@@ -16,7 +16,7 @@ const members = [
     desc: 'Specializing in fine-tuning AI models to enhance their performance. Improving accuracy and efficiency, and operates at its full potential.'
   },
   {
-    name: 'Sayedi ElFahmy',
+    name: 'Omar Fahmy',
     pos: 'AI Trainer',
     desc: 'Responsible for training the AI models with the right data to ensure they learn and adapt effectively. Working in optimizing the AI’s Accuracy.'
   },
