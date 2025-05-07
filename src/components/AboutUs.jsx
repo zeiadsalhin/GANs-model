@@ -20,11 +20,11 @@ const members = [
     pos: 'AI Trainer',
     desc: 'Responsible for training the AI models with the right data to ensure they learn and adapt effectively. Working in optimizing the AI’s Accuracy.'
   },
-  {
-    name: 'Ahmed Mostafa',
-    pos: 'Team Member',
-    desc: 'Valuable team member who contributes to various aspects of the project. From coding to problem-solving and collaboration.'
-  },
+  // {
+  //   name: 'Ahmed Mostafa',
+  //   pos: 'Team Member',
+  //   desc: 'Valuable team member who contributes to various aspects of the project. From coding to problem-solving and collaboration.'
+  // },
   {
     name: 'Mohamed Khaled',
     pos: 'AI Trainer',
