@@ -7,8 +7,8 @@ const members = [
   },
   {
     name: 'Zeiad Abdeltawab',
-    pos: 'App & Model Creator',
-    desc: 'I lead the development of the app and the AI model, ensuring functionality, and optimizing the model response.'
+    pos: 'App Creator & Model Implemeter',
+    desc: 'I lead the development of the app and implementing the AI model, ensuring functionality, and optimizing the model response.'
   },
   {
     name: 'Islam BahiEldeen',
@@ -17,8 +17,8 @@ const members = [
   },
   {
     name: 'Omar Fahmy',
-    pos: 'AI Trainer',
-    desc: 'Responsible for training the AI models with the right data to ensure they learn and adapt effectively. Working in optimizing the AI’s Accuracy.'
+    pos: 'App Creator & Model Implemeter',
+    desc: 'Responsible of the development of the mobile app, ensuring functionality, and optimizing the model response.'
   },
   // {
   //   name: 'Ahmed Mostafa',
