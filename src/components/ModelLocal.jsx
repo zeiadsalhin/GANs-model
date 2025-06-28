@@ -55,12 +55,12 @@ const fetchData = async () => {
 
   setLoaderServer(true);
   setError(null);
-  const formData = new FormData(); // Create FormData for the file upload 
-  formData.append("file", imageServer); // Append the file to FormData
+  const img_file = new FormData(); // Create FormData for the file upload 
+  img_file.append("image", imageServer); // Append the file to FormData
 
   try {
     // Send the image file to the FastAPI server
-    const response = await axios.post("https://bonefish-accepted-separately.ngrok-free.app/generate/", formData, {
+    const response = await axios.post("https://bonefish-accepted-separately.ngrok-free.app/upsample", img_file, {
       headers: {
         "Content-Type": "multipart/form-data", // This header is important for file uploads
       },
