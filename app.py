@@ -5,22 +5,27 @@ from PIL import Image
 import tempfile
 import os
 from fastapi.middleware.cors import CORSMiddleware
+from flask_cors import CORS
 
-apps = FastAPI()
+# apps = FastAPI()
+
+app = Flask(__name__)
+
+CORS(app)  # Allow CORS for all requests
 
 #Add CORS middleware to allow requests from your React frontend
-apps.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins (adjust as needed)
-    allow_credentials=True,
-    allow_methods=["*"],  # Allow all methods (GET, POST, etc.)
-    allow_headers=["*"],  # Allow all headers
-) 
+# apps.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],  # Allow all origins (adjust as needed)
+#     allow_credentials=True,
+#     allow_methods=["*"],  # Allow all methods (GET, POST, etc.)
+#     allow_headers=["*"],  # Allow all headers
+# ) 
 
 ### the flask app ###
 # the link is https://rnukh-197-52-37-216.a.free.pinggy.link/
 
-app = Flask(__name__)
+
 model = load_model()  # Load the SRGAN model once at startup
 
 @app.route('/')
