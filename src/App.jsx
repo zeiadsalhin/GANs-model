@@ -9,7 +9,7 @@ const members = [
   'Mohamed Mahmoud', 
   'Islam BahiEldin',
   'Omar Fahmy',
-  'Ahmed Mostafa',
+  // 'Ahmed Mostafa',
   'Mohamed Khaled'
 ]
 function App() {
