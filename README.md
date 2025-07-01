@@ -32,6 +32,24 @@ To get started with theFront, follow these steps:
    ```bash
    npm run dev
 
+4. **Start the model server:**
+   ```bash
+      python app.py
+
+5. **Install the forwarding server service (ngrok):**
+   ```bash
+      npm install -g ngrok
+
+6. **Configure service (ngrok):**
+   ```bash
+      ngrok config add-authtoken [ADD YOUR TOKEN HERE]
+
+7. **Start the (ngrok) public forwarding server:**
+   ```bash
+      ngrok http --url=[ADD YOUR STATIC URL HERE] [ADD PORT Number HERE According to your localhost ex. 5000]
+
+**NOTE:** ***Make sure to update the STATIC URL too in `Components/ModelLocal.jsx` line `63`.***
+
 ## Usage
 Here’s how to use the GANs Super-Resolution Model on the website:
 
