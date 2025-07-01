@@ -20,7 +20,7 @@ class SubpixelConv2D(Layer):
 # Load the model
 def load_model():
     model = tf.keras.models.load_model(
-        r"C:\Users\zeyad\Desktop\tailwind\react\gans-model\generator_model_V5.h5",
+        r"generator_model_V5.h5",
         custom_objects={'SubpixelConv2D': SubpixelConv2D}
     )
     return model
