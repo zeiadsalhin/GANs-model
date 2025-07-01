@@ -1,10 +1,10 @@
-from fastapi import FastAPI
+# from fastapi import FastAPI
 from flask import Flask, redirect, request, jsonify, send_file, after_this_request, url_for
 from srgan_model import load_model, upsample_image
 from PIL import Image
 import tempfile
 import os
-from fastapi.middleware.cors import CORSMiddleware
+# from fastapi.middleware.cors import CORSMiddleware
 from flask_cors import CORS
 
 # apps = FastAPI()
